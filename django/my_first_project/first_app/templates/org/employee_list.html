@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<table border="1">
+    <tr>
+        <th>사원번호</th>
+        <th>사원명</th>
+        <th>급여</th>
+        <th>부서이름</th>
+        <th>주소</th>
+    </tr>
+{% for employee in employee_list %}
+    <tr>
+        <td>{{ employee.emp_id }}</td>
+        <td>{{ employee.ename }}</td>
+        <td>{{ employee.salary }}</td>
+        <td>{{ employee.department_name.department_name }}</td>
+        <td>{{ employee.department_name.address }}</td>
+    </tr>
+{% empty %}
+    <tr>
+        <th colspan="5">직원이 없습니다!</th>
+    </tr>
+{% endfor %}
+</table>
+
+</body>
+</html>

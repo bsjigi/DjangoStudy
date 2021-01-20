@@ -1,0 +1,52 @@
+
+# 템플릿
+    - Django에서 동적 HTML 페이지(Dynamic Webpage)를 간편하게 생성하기 위한 방식
+    - 미리 작성해놓은 .html 파일을 응답할 수 있다
+    - 템플릿은 반드시 templates 디렉토리 내부에 작성해두어야 한다
+    - 템플릿 태그를 이용하면 추가적인 기능도 활용할 수 있다
+
+# 템플릿 태그들
+
+    1. if
+        {% if 조건 %}
+        {% elif 조건 %}
+        {% else %}
+        {% endif %}
+
+    2. for
+        {% for %}
+        {% empty %}
+        {% endfor %}
+
+        forloop.counter : 몇 번째 반복인지에 대한 정보
+        forloop.counter0 : 몇 번째 반복인지에 대한 정보 (0부터 시작)
+        forloop.revcounter : 몇 번째 반복인지에 대한 정보 (뒤에서부터)
+        forloop.revcounter0 : 몇 번째 반복인지에 대한 정보 (뒤에서부터, 마지막이 0)
+        forloop.first : 첫 번째 반복일 때 True
+        forloop.last : 마지막 반복일 때 True
+        forloop.parentloop : 부모 for문 객체를 가져온다
+        ex: forloop.parentloop.counter : 부모 for문이 현재 몇 번째 반복인지를 알 수 있다
+
+    3. cycle
+        (for문 내부에서) {% cycle 'value1' 'value2' ... %}
+
+    4. filter: 사용할 변수에 |를 사용해 원본으로부터 다양한 값을 추출할 수 있다
+        {{ animals|length }} : 동물이 몇마리인가
+        {{ animals|random }} : 동물들 중 랜덤으로 한 마리 선택
+        ...
+
+    5. url
+        {% url 'url-name' %}
+
+    6. {# 주석 #}
+
+    7. {% autoescape off %}
+       {% endautoescape %}
+
+
+
+
+
+
+
+

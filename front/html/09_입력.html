@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>사용자로부터 입력받기</title>
+</head>
+<body>
+
+<h3># input tag</h3>
+<ul>
+    <li>사용자가 원하는 값을 입력할 수 있는 칸을 생성한다</li>
+    <li>type 속성에 따라 다양한 방식으로 입력을 받을 수 있다</li>
+    <li>input태그들은 폼(form)단위로 묶여있어야 한다</li>
+    <li>반드시 name 속성을 통해 카테고리를 설정해야 한다</li>
+</ul>
+
+<h3># form tag</h3>
+<ul>
+    <li>input태그들을 묶는 태그</li>
+    <li>submit, reset 버튼은 폼(form)단위로 전송/취소를 수행한다</li>
+    <li>action 속성: submit 발생 시 데이터와 함께 이동할 페이지의 URL</li>
+    <li>
+        method 속성: 전송 방식 설정 (GET/POST/PUT/...) <br>
+            GET 방식 - 데이터를 URL뒤에 붙여서 전송한다 <br>
+            POST 방식 - 데이터를 request body에 실어서 전송한다 <br>
+    </li>
+    <li>데이터 전송시, input태그의 name속성값이 key역할을 하게 된다.</li>
+    <li>데이터 전송시, input태그에 사용자가 입력한 값 또는 value속성이 value역할을 하게 된다.</li>
+</ul>
+
+<hr>
+
+<!--
+    id 속성 : 모든 HTML요소는 id속성을 가질 수 있다. 한 요소를 유일하게 구분하는 용도로 사용하는 속성.
+-->
+<form id="form1" action="./09_입력.html" method="GET">
+<table border="3">
+    <tr>
+        <th>타입</th>
+        <th>모양</th>
+        <th>설명</th>
+    </tr>
+    <tr>
+        <td>type="text"</td>
+        <td><input type="text" name="user_id"></td>
+        <td>기본적인 입력 칸</td>
+    </tr>
+    <tr>
+        <td>type="password"</td>
+        <td><input type="password" name="write_password"></td>
+        <td>비밀번호 입력 칸</td>
+    </tr>
+    <tr>
+        <td>type="number"</td>
+        <td><input type="number"></td>
+        <td>숫자만 입력할 수 있는 입력 칸</td>
+    </tr>
+    <tr>
+        <td>type="date"</td>
+        <td><input type="date"></td>
+        <td>날짜를 선택할 수 있는 입력 칸</td>
+    </tr>
+    <tr>
+        <td>type="radio"</td>
+        <td>
+            <input id="black" value="black" type="radio" name="noodle">
+            <label for="black">신라면블랙</label> <br>
+            <input id="jin_s" value="jin_s" type="radio" name="noodle">
+            <label for="jin_s">진순</label> <br>
+            <input id="jin_m" value="jin_m" type="radio" name="noodle">
+            <label for="jin_m">진매</label> <br>
+            <input id="dosirak" value="dosirak" type="radio" name="noodle">
+            <label for="dosirak">도시락</label> <br>
+            <input id="yuk" value="yuk" type="radio" name="noodle">
+            <label for="yuk">육개장</label> <br>
+            <hr>
+            <input id="salmon" type="radio" name="sushi">
+            <label for="salmon">연어</label> <br>
+            <input id="flatfish" type="radio" name="sushi">
+            <label for="flatfish">광어</label> <br>
+            <input id="rockfish" type="radio" name="sushi">
+            <label for="rockfish">우럭</label> <br>
+            <input id="mung" type="radio" name="sushi">
+            <label for="mung">멍게</label> <br>
+            <input id="squid" type="radio" name="sushi">
+            <label for="squid">오징어</label> <br>
+        </td>
+        <td>
+            여러개의 항목 중 하나만 선택할 수 있는 버튼을 생성한다. <br>
+            같은 name 속성값을 지닌 버튼들 중에서 하나만 선택할 수 있다.
+        </td>
+    </tr>
+    <tr>
+        <td>type="checkbox"</td>
+        <td>
+            <input id="action" value="action" type="checkbox" name="genre">
+            <label for="action">액션</label> <br>
+            <input id="fantasy" value="fantasy" type="checkbox" name="genre">
+            <label for="fantasy">판타지</label> <br>
+            <input id="melo" value="melo" type="checkbox" name="genre">
+            <label for="melo">멜로</label> <br>
+            <input id="animation" value="animation" type="checkbox" name="genre">
+            <label for="animation">애니메이션</label> <br>
+            <input id="sf" value="sf" type="checkbox" name="genre">
+            <label for="sf">SF</label> <br>
+        </td>
+        <td>
+            여러개의 항목을 선택할 수 있는 체크박스를 생성한다.
+        </td>
+    </tr>
+    <tr>
+        <td>type="submit"</td>
+        <td>
+            <input type="submit">
+            <input type="submit" value="로그인">
+            <input type="submit" value="글쓰기">
+        </td>
+        <td>
+            데이터를 전송하는 버튼을 생성. <br>
+            버튼이 속한 폼 내부의 input태그들에 입력된 데이터들을 전송한다. <br>
+        </td>
+    </tr>
+    <tr>
+        <td>type="reset"</td>
+        <td>
+            <input type="reset">
+            <input type="reset" value="취소">
+        </td>
+        <td>
+            데이터 입력을 초기화하는 버튼을 생성. <br>
+            버튼이 속한 폼 내부의 input태그들에 입력된 데이터들을 초기화한다. <br>
+        </td>
+    </tr>
+    <tr>
+        <td>&lt;select&gt;</td>
+        <td>
+            <select name="country">
+                <option value="none">--- 국가 코드를 선택해주세요 ---</option>
+                <option value="ko">Korean -- ko</option>
+                <option value="us">USA -- us</option>
+                <option value="ja">Japan -- ja</option>
+                <option value="cn">China -- cn</option>
+            </select>
+        </td>
+        <td>
+            사용자가 여러가지 중 하나를 선택할 수 있다
+        </td>
+    </tr>
+    <tr>
+        <td>&lt;textarea&gt;</td>
+        <td>
+            <textarea name="content" cols="30" rows="5"></textarea>
+        </td>
+        <td>
+            긴 글을 입력할 수 있는 영역을 생성한다 <br>
+            GET 방식에는 전송 길이 제한이 있기 때문에 (URL길이제한) <br>
+            너무 긴 글은 다른 방식으로 보내는것이 좋다 <br>
+        </td>
+    </tr>
+</table>
+</form>
+
+<h3># form2</h3>
+<form id="form2" action="">
+    <input type="text">
+    <input type="text">
+</form>
+
+<h3># form3</h3>
+<form id="form3" action="">
+    <input type="text">
+    <input type="text">
+    <input type="text">
+</form>
+
+<hr>
+<input type="reset" form="form1" value="form1 초기화 버튼"> <br>
+<input type="reset" form="form2" value="form2 초기화 버튼"> <br>
+<input type="reset" form="form3" value="form3 초기화 버튼"> <br>
+
+</body>
+</html>

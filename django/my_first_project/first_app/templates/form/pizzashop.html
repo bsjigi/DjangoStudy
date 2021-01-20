@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pizzashop 2.0</title>
+</head>
+<body>
+
+<form id="pizza_order" action="./payment" method="POST">{% csrf_token %}</form>
+<table border="1">
+    <tr>
+        <th colspan="2">Pizza Shop 2.0</th>
+    </tr>
+    <tr>
+        <td>Name</td>
+        <td><input form="pizza_order" type="text" name="name"></td>
+    </tr>
+    <tr>
+        <td>Pizza Topping</td>
+        <td>
+            {% for topping in toppings %}
+                <input form="pizza_order" name="topping" id="{{ topping }}" value="{{ topping }}" type="radio">
+                <label for="{{ topping }}">{{ topping|title }}</label> <br>
+            {% empty %}
+            <h3>No topping loaded.</h3>
+            {% endfor %}
+        </td>
+    </tr>
+    <tr>
+        <td>Pizza Sauce</td>
+        <td>
+            <select form="pizza_order" name="sauce">
+                {% for sauce in sauces %}
+                <option value="{{ sauce }}">{{ sauce|title }}</option>
+                {% empty %}
+                <h3>Sauce is sold out.</h3>
+                {% endfor %}
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>Optional Extras</td>
+        <td>
+            {% for extra in extras %}
+            <input checked form="pizza_order" type="checkbox" name="extras"
+                   value="{{ extra.name }}" id="{{ extra.name }}">
+            <label for="{{ extra.name }}">{{ extra.desc|title }}</label> <br>
+            {% empty%}
+            <h5>Extra option load error.</h5>
+            {% endfor %}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            Delivery Instructions: <br>
+            <textarea form="pizza_order" name="instructions" cols="40" rows="10"></textarea>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <input form="pizza_order" type="submit" value="Send my Order">
+        </td>
+    </tr>
+</table>
+
+
+</body>
+</html>

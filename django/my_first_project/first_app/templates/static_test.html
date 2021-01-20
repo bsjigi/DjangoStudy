@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>정적 자원 테스트</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/font.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+
+<h3># Print Image</h3>
+
+<img src="{% static 'image/Battle.jpg' %}" alt="배틀">
+
+<p>Almost before we knew it, we had left the ground.</p>
+
+<p>
+    <i style="color: red;" class="material-icons">account_box</i>
+    <i style="color: blue;" class="material-icons">batch_prediction</i>
+    <i style="color: purple;" class="material-icons">date_range</i>
+</p>
+
+</body>
+</html>

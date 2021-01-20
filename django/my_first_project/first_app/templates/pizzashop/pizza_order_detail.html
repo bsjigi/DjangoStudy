@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>피자주문 상세정보</title>
+</head>
+<body>
+
+<h3>'{{ a_order.customer_name }}'님의 피자 주문 상세정보</h3>
+
+<form id="pizza_order" action="{% url 'pizza_modify' a_order.id %}" method="POST">{% csrf_token %}</form>
+<table border="1">
+    <tr>
+        <th colspan="2">Pizza Shop 2.0</th>
+    </tr>
+    <tr>
+        <td>Name</td>
+        <td>
+            <input form="pizza_order" type="text" name="name"
+                   value="{{ a_order.customer_name }}" readonly>
+        </td>
+    </tr>
+    <tr>
+        <td>Pizza Topping</td>
+        <td>
+            {% for topping in toppings %}
+               {% if topping == a_order.pizza_topping %}
+                        <input checked form="pizza_order" name="topping" id="{{ topping }}" value="{{ topping }}" type="radio">
+                        <label for="{{ topping }}">{{ topping|title }}</label> <br>
+                    {% else %}
+                        <input form="pizza_order" name="topping" id="{{ topping }}" value="{{ topping }}" type="radio">
+                        <label for="{{ topping }}">{{ topping|title }}</label> <br>
+                    {% endif %}
+               {% empty %}
+            <h3>No topping loaded.</h3>
+            {% endfor %}
+        </td>
+    </tr>
+    <tr>
+        <td>Pizza Sauce</td>
+        <td>
+            <select form="pizza_order" name="sauce">
+                {% for sauce in sauces %}
+                    {% if sauce == a_order.pizza_sauce %}
+                        <option selected value="{{ sauce }}">{{ sauce|title }}</option>
+                    {% else %}
+                        <option value="{{ sauce }}">{{ sauce|title }}</option>
+                    {% endif %}
+                {% empty %}
+                <h3>Sauce is sold out.</h3>
+                {% endfor %}
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>Optional Extras</td>
+        <td>
+            {% for extra in extras %}
+                {% if extra.name in optional_extra_list %}
+                    <input checked form="pizza_order" type="checkbox" name="extras"
+                        value="{{ extra.name }}" id="{{ extra.name }}">
+                    <label for="{{ extra.name }}">{{ extra.desc|title }}</label> <br>
+                {% else %}
+                    <input form="pizza_order" type="checkbox" name="extras"
+                        value="{{ extra.name }}" id="{{ extra.name }}">
+                    <label for="{{ extra.name }}">{{ extra.desc|title }}</label> <br>
+                {% endif %}
+            {% empty %}
+            <h5>Extra option load error.</h5>
+            {% endfor %}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            Delivery Instructions: <br>
+            <textarea form="pizza_order" name="instructions"
+                cols="40" rows="10">{{ a_order.delivery_instructions }}</textarea>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <input form="pizza_order" type="submit" value="Modify this Order">
+            <!-- onclick속성 : 요소를 클릭하면 작성한 자바스크립트를 실행한다. -->
+            <button onclick="deleteSubmit();">Delete this Order</button>
+        </td>
+    </tr>
+</table>
+
+<script>
+    function deleteSubmit() {
+        document.forms.pizza_order.action = '{% url 'pizza_delete' a_order.id %}';
+        document.forms.pizza_order.submit();
+    }
+</script>
+
+</body>
+</html>

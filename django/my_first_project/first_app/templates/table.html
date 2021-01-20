@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>표 출력하기</title>
+</head>
+<body>
+
+<h3># table 태그</h3>
+
+<p>
+    - table: 표의 영역을 정의하는 태그<br>
+    - tr: table row. 테이블에 한 줄을 추가하는 태그 <br> <!-- row: 행 -->
+    - th: table header. 제목 칸을 추가하는 태그 <br>
+    - td: table data. 데이터 칸을 추가하는 태그 <br>
+    - caption: 테이블 제목을 작성하는 태그 <br>
+</p>
+
+<table border="3">
+    <!-- &lt; less than -->
+    <!-- &gt; greater than -->
+    <caption>&lt; 회원 목록 &gt;</caption>
+    <tr>
+        <th>이름</th>
+        <th>이메일</th>
+        <th>주소</th>
+        <th colspan="2">전화번호</th> <!-- 이 칸은 두 열을 차지하는 칸이 된다 -->
+    </tr>
+    <tr>
+        <td>홍길동</td>
+        <td>hong1234@naver.com</td>
+        <td>서울특별시 종로구 묘동 돈화문로 26 kg아이티뱅크</td>
+        <td>02-1234-1234</td>
+        <td>010-1234-1234</td>
+    </tr>
+     <tr>
+        <td>양다정</td>
+        <td rowspan="2">yang1234@naver.com</td> <!-- 이 칸은 두 줄을 차지하는 칸이 된다 -->
+        <td rowspan="2">서울특별시 종로구 묘동 돈화문로 26 kg아이티뱅크</td>
+        <td rowspan="2">02-1234-1234</td>
+        <td rowspan="2">010-1234-1234</td>
+    </tr>
+    <tr>
+        <td>양다정2</td>
+    </tr>
+    <tr>
+        <td>김지안</td>
+        <td>jian1234@naver.com</td>
+        <td>서울특별시 종로구 묘동 돈화문로 26 kg아이티뱅크</td>
+        <td>02-1234-1234</td>
+        <td>010-1234-1234</td>
+    </tr>
+    <tr>
+        <td>정제헌</td>
+        <td>jung@naver.com</td>
+        <td>서울특별시 종로구 묘동 돈화문로 26 kg아이티뱅크</td>
+        <td>02-1234-1234</td>
+        <td>010-1234-1234</td>
+    </tr>
+</table>
+
+<hr>
+
+<table border="3">
+    <tr>
+        <td colspan="2" rowspan="3">AAAAAAAAAAAAAAAAAAAA<br><br></td>
+        <td rowspan="2">EEEEE<br></td>
+        <td colspan="3" rowspan="3">GGGGGGGGGGGGGG<br><br></td>
+        <td colspan="2" rowspan="3">JJJJJJ<br><br></td>
+        <td colspan="3">NNNNNNNNNNNNNN</td>
+    </tr>
+    <tr>
+        <td colspan="2" rowspan="2">O<br>O</td>
+        <td rowspan="2"></td>
+    </tr>
+    <tr>
+        <td>F</td>
+    </tr>
+</table>
+
+</body>
+</html>

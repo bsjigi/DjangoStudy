@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>템플릿 연습</title>
+</head>
+<body>
+
+<h3># 템플릿에 전달된 데이터를 사용하기</h3>
+
+<p>views.py로부터 도착한 데이터들 {{ a }}, {{ b }}, {{ c }}</p>
+<p>
+    템플릿에서는 계산이 안되기 때문에,
+    views.py에서 모든 계산을 끝마친 결과를 가져오는 방식으로
+    페이지를 구성하는 것이 좋다. a + b + c = {{ sum }}
+</p>
+<p>
+    로또 : {{ lotto }} <br>
+    로또2 : {{ lotto2 }} <br>
+    과일 : {{ fruit }} <br>
+</p>
+
+<h3># 템플릿에 전달된 iterable 객체를 사용하기</h3>
+
+<p>
+    views.py로부터 전달받은 iterable 객체 (tuple, list, set, dict, str, ... )는 <br>
+    for 템플릿 태그를 통해 내용을 하나씩 꺼낼 수 있다
+</p>
+
+<div style="border: solid orange 3px; width: 400px; padding: 20px; margin: 20px;">
+    <b>동물들:</b> {{ animals }} <br>
+    <hr>
+    {% for animal in animals %}
+        하나씩: {{ animal }} <br>
+    {% endfor %}
+</div>
+
+<div style="border: dashed pink 3px; width: 400px; padding: 20px; margin: 20px;">
+    <b>홀수들:</b> {{ odds }} <br>
+    <hr>
+    {% for odd in odds %}
+        하나씩: {{ odd }} <br>
+    {% endfor %}
+</div>
+
+<div style="border: dotted navy 3px; width: 400px; padding: 20px; margin: 20px;">
+    <b>환영인사:</b> {{ welcomeMessage }} <br>
+    <hr>
+    {% for ch in welcomeMessage %}
+        <span style="color: {% cycle 'red' 'blue' 'green' 'orange' 'purple' %};">
+            하나씩: {{ ch }}
+        </span> <br>
+    {% endfor %}
+</div>
+
+<h3># 템플릿에 전달된 값에 따라 달라지는 htmlCode</h3>
+
+<p>
+{% if fruit == 'apple' %}
+    이번 과일은 사과입니다.
+{% elif fruit == 'banana' %}
+    이번 과일은 바나나입니다.
+{% else %}
+    이번 과일은 사과도 아니고 바나나도 아닙니다.
+{% endif %}
+</p>
+
+<h3>
+    # 만약 friends가 비어있다면, '친구 목록이 비어있습니다.'를 출력하고
+    비어있지 않다면 친구를 하나씩 출력해주는 코드를 작성해보세요.
+</h3>
+
+{% if friends %}
+<h3 style="color: darkorange;">- 나의 친구 목록 -</h3>
+<ol>
+    {% for friend in friends %}
+    <li>{{ friend }}</li>
+    {% endfor %}
+</ol>
+{% else %}
+    <h3 style="color: darkorange;">친구 목록이 비어있습니다!!</h3>
+{% endif %}
+
+<ul>
+{% for friend in friends %}
+    <li>{{ friend }}</li>
+{% empty %}
+    <li>친구 목록이 비어있습니다!!</li>
+{% endfor %}
+</ul>
+
+동물 {{ animals|length }}마리 중 랜덤으로 동물 뽑기 <br>
+랜덤 동물 : {{ animals|random }} <br>
+
+
+<h3># for 템플릿 태그 내부에서 쓸 수 있는 변수들</h3>
+<ul>
+    <li>forloop.counter : 몇 번째 반복인지에 대한 정보</li>
+    <li>forloop.counter0 : 몇 번째 반복인지에 대한 정보 (0부터 시작)</li>
+    <li>forloop.revcounter : 몇 번째 반복인지에 대한 정보 (뒤에서부터)</li>
+    <li>forloop.revcounter0 : 몇 번째 반복인지에 대한 정보 (뒤에서부터, 마지막이 0)</li>
+    <li>forloop.first : 첫 번째 반복일 때 True</li>
+    <li>forloop.last : 마지막 반복일 때 True</li>
+    <li>
+        forloop.parentloop : 부모 for문 객체를 가져온다 <br>
+        ex: forloop.parentloop.counter : 부모 for문이 현재 몇 번째 반복인지를 알 수 있다
+    </li>
+</ul>
+
+{% for animal in animals %}
+    {% if forloop.first %}
+        <p style="background-color: red; color: white;">
+    {% elif forloop.last %}
+        <p style="background-color: blue; color: white;">
+    {% else %}
+        <p>
+    {% endif %}
+    {{ forloop.revcounter0 }}. {{ animal }}</p>
+{% endfor %}
+
+<h3># URL 템플릿 태그</h3>
+<ul>
+    <li>urls.py에서 지정한 이름을 통해 쉽게 URL을 불러올 수 있는 템플릿 태그</li>
+    <li>
+        템플릿 태그와 url name을 이용하면 나중에 url이 변경되더라도
+        일일이 링크를 수정하지 않아도 된다는 장점이 있다.
+    </li>
+</ul>
+
+<h3># URL 템플릿 태그를 사용하지 않은 링크들</h3>
+<ul>
+    <li><a href="/first/">인덱스 페이지.</a></li>
+    <li><a href="/first/write/">Write 페이지.</a></li>
+    <li><a href="/first/delete/">Delete 페이지.</a></li>
+    <li><a href="/first/comic/">웹툰 페이지.</a></li>
+    <li><a href="/first/layout">레이아웃 페이지.</a></li>
+</ul>
+
+<h3># URL 템플릿 태그를 사용한 링크들</h3>
+<ul>
+    <li><a href="{% url 'index' %}">인덱스 페이지.</a></li>
+    <li><a href="{% url 'write' %}">Write 페이지.</a></li>
+    <li><a href="{% url 'delete' %}">Delete 페이지.</a></li>
+    <li><a href="{% url 'comic' %}">웹툰 페이지.</a></li>
+    <li><a href="{% url 'layout' %}">레이아웃 페이지.</a></li>
+</ul>
+
+<h3># 넘어오는 데이터를 HTML로 사용하기</h3>
+{# 넘어오는 데이터의 autoescape 설정을 꺼야 한다. #}
+{% autoescape off %}
+    {{ pythonHtmlCode }}
+{% endautoescape %}
+
+</body>
+</html>

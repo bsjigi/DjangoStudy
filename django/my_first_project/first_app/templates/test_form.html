@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Form</title>
+</head>
+<body>
+
+<form id="test1" action="{% url 'action' %}" method="GET">
+    이름: <input type="text" name="name">
+    <hr>
+    나이: <input type="number" name="age" min="0" value="0">
+    <hr>
+    <input type="checkbox" name="genre" value="comic">코믹
+    <input type="checkbox" name="genre" value="action">액션
+</form>
+
+<!-- input태그의 form속성을 통해 폼 태그 외부에서도 폼을 지정할 수 있다 -->
+<input type="submit" form="test1">
+
+</body>
+</html>

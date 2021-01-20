@@ -1,0 +1,32 @@
+# Pycharm에서 Django 설치하기
+
+    File -> Settings -> Project:dirname -> Python Interpreter
+        -> 가상 환경 생성 후 Django 설치
+
+# Windows 터미널
+
+    - Windows 바탕화면은 마우스와 아이콘을 이용해 컴퓨터를 편리하게 다룰 수 있다 (편하지만 느림)
+      (GUI : Graphic User Interface)
+    - Windows 터미널은 텍스트와 명령어만을 이용해 컴퓨터를 불편하게 다룰 수 있다 (불편하지만 매우 빠름)
+      (CLI : Command Line Interface)
+
+# 터미널 주요 명령어
+    - help : 메뉴얼을 확인할 수 있다
+    - cd : 디렉토리를 변경한다 (change directory)
+    - dir : 현재 위치의 모든 파일 및 디렉토리 목록을 볼 수 있다
+
+# Django 프로젝트 생성하기
+    django-admin startproject 프로젝트명
+
+# 프로젝트 기본 구성
+    1. 프로젝트명과 똑같은 이름의 폴더
+        - 프로젝트의 전체적인 설정들을 프로그래머가 직접 수정할 수 있다
+        - asgi.py, settings.py, urls.py, wsgi.py ...
+    2. manage.py
+        - 프로젝트를 관리하는데에 필요한 여러 도구들을 실행하는 프로그램
+        - 다양한 명령어들을 통해 프로젝트를 간편하게 관리 할 수 있다
+
+# 웹 서버 실행 확인
+
+    python manage.py runserver
+
